@@ -1,5 +1,5 @@
 # relojqlocktwo
-clock made with Javascript (jQuery), HTML, and CSS (bootstrap)
+clock made with Javascript (jQuery), HTML, and CSS (bootstrap), libraries: [pace](https://codebyzach.github.io/pace/) and [animate](https://animate.style/)
 
 [Reloj Led Website - demo](https://dangakunclock2.w3spaces.com/)
 
