@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="favicon/icons8-clock-ios-16-filled-32.png">
+	<title>Reloj Dani Qlocktwo</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+	<style type="text/css">
+		body{background-color: rgb(0 0 0 / 95%);}
+		.hora-on{color: var(--bs-red) !important;/*#fff*/background-color: var(--bs-orange) !important;/*#0d6efd*/border-color: var(--bs-yellow) !important;/*#0d6efd*/}
+		.horas{font-size: 2.5rem;}
+		.hr{display: none !important;}
+		.row-hr{margin: 1vh 0;}
+		.seleccionado{color: var(--bs-green); font-weight:bold;}
+		#horario-digital-horas{color:var(--bs-gray-900);}
+		#horario-digital-minutos{color:var(--bs-green);}
+		#horario-digital-segundos{color:var(--bs-gray-900);/*color:var(--bs-purple);*/}
+		.progress{height:1px !important;background-color:rgba(126,126,126,0.01) !important;width:100% !important;}
+		.progress-bar{/*background-color:var(--bs-gray-900); !important;*/height:1px !important;width:0%;}
+		/* ----- START seleccionado-COLORS ----- */
+		.seleccionado-colorGreen{color:var(--bs-green) !important;}.seleccionado-colorBlue{color:var(--bs-blue) !important;}.seleccionado-colorIndigo{color:var(--bs-indigo) !important;}.seleccionado-colorPurple{color:var(--bs-purple) !important;}.seleccionado-colorPink{color:var(--bs-pink) !important;}.seleccionado-colorRed{color:var(--bs-red) !important;}.seleccionado-colorOrange{color:var(--bs-orange) !important;}.seleccionado-colorYellow{color:var(--bs-yellow) !important;}.seleccionado-colorGreen{color:var(--bs-green) !important;}.seleccionado-colorTeal{color:var(--bs-teal) !important;}.seleccionado-colorCyan{color:var(--bs-cyan) !important;}.seleccionado-colorWhite{color:var(--bs-white) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorGray{color:var(--bs-gray) !important;}.seleccionado-colorPrimary{color:var(--bs-primary) !important;}.seleccionado-colorSecondary{color:var(--bs-secondary) !important;}.seleccionado-colorSuccess{color:var(--bs-success) !important;}.seleccionado-colorInfo{color:var(--bs-info) !important;}.seleccionado-colorWarning{color:var(--bs-warning) !important;}.seleccionado-colorDanger{color:var(--bs-danger) !important;}.seleccionado-colorLight{color:var(--bs-light) !important;}		/* ----- END seleccionado-COLORS ----- */
+		/* ----- START COLORS ----- */
+		.colorGreen{color:var(--bs-green) !important;}.colorBlue{color:var(--bs-blue) !important;}.colorIndigo{color:var(--bs-indigo) !important;}.colorPurple{color:var(--bs-purple) !important;}.colorPink{color:var(--bs-pink) !important;}.colorRed{color:var(--bs-red) !important;}.colorOrange{color:var(--bs-orange) !important;}.colorYellow{color:var(--bs-yellow) !important;}.colorGreen{color:var(--bs-green) !important;}.colorTeal{color:var(--bs-teal) !important;}.colorCyan{color:var(--bs-cyan) !important;}.colorWhite{color:var(--bs-white) !important;}.colorGray{color:var(--bs-gray) !important;}.colorGrayDark{color:var(--bs-gray-dark) !important;}.colorGray-100{color:var(--bs-gray-100) !important;}.colorGray-200{color:var(--bs-gray-200) !important;}.colorGray-300{color:var(--bs-gray-300) !important;}.colorGray-400{color:var(--bs-gray-400) !important;}.colorGray-500{color:var(--bs-gray-500) !important;}.colorGray-600{color:var(--bs-gray-600) !important;}.colorGray-700{color:var(--bs-gray-700) !important;}.colorGray-800{color:var(--bs-gray-800) !important;}.colorGray-900{color:var(--bs-gray-900) !important;}.colorPrimary{color:var(--bs-primary) !important;}.colorSecondary{color:var(--bs-secondary) !important;}.colorSuccess{color:var(--bs-success) !important;}.colorInfo{color:var(--bs-info) !important;}.colorWarning{color:var(--bs-warning) !important;}.colorDanger{color:var(--bs-danger) !important;}.colorLight{color:var(--bs-light) !important;}.colorDark{color:var(--bs-dark) !important;}
+		/* ----- END COLORS ----- */
+		/* ----- START backgroundCOLORS ----- */
+		.backgroundColorGreen{background-color:var(--bs-green);}.backgroundColorBlue{background-color:var(--bs-blue);}.backgroundColorIndigo{background-color:var(--bs-indigo);}.backgroundColorPurple{background-color:var(--bs-purple);}.backgroundColorPink{background-color:var(--bs-pink);}.backgroundColorRed{background-color:var(--bs-red);}.backgroundColorOrange{background-color:var(--bs-orange);}.backgroundColorYellow{background-color:var(--bs-yellow);}.backgroundColorGreen{background-color:var(--bs-green);}.backgroundColorTeal{background-color:var(--bs-teal);}.backgroundColorCyan{background-color:var(--bs-cyan);}.backgroundColorWhite{background-color:var(--bs-white);}.backgroundColorGray{background-color:var(--bs-gray);}.backgroundColorGrayDark{background-color:var(--bs-gray-dark);}.backgroundColorGray-100{background-color:var(--bs-gray-100);}.backgroundColorGray-200{background-color:var(--bs-gray-200);}.backgroundColorGray-300{background-color:var(--bs-gray-300);}.backgroundColorGray-400{background-color:var(--bs-gray-400);}.backgroundColorGray-500{background-color:var(--bs-gray-500);}.backgroundColorGray-600{background-color:var(--bs-gray-600);}.backgroundColorGray-700{background-color:var(--bs-gray-700);}.backgroundColorGray-800{background-color:var(--bs-gray-800);}.backgroundColorGray-900{background-color:var(--bs-gray-900);}.backgroundColorPrimary{background-color:var(--bs-primary);}.backgroundColorSecondary{background-color:var(--bs-secondary);}.backgroundColorSuccess{background-color:var(--bs-success);}.backgroundColorInfo{background-color:var(--bs-info);}.backgroundColorWarning{background-color:var(--bs-warning);}.backgroundColorDanger{background-color:var(--bs-danger);}.backgroundColorLight{background-color:var(--bs-light);}.backgroundColorDark{background-color:var(--bs-dark);}
+		/* ----- END backgroundCOLORS ----- */
+	</style>
+
+	<!--
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-fill-left.css">
+	-->
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+	<script data-pace-options='{"ajax":false,"restartOnPushState":false,"restartOnRequestAfter":false,"eventLag":false}' src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+	<script defer src="https://friconix.com/cdn/friconix.js"> </script>
+</head>
+<body>
+	<div id="divReloj" class="invisible container-fluid text-center -NOT-animate__animated -NOT-animate__lightSpeedInLeft">
+		<div class="row"><div col="col-12">&nbsp;</div></div>
+		<div class="row align-items-center">
+			<div class="col-3">&nbsp;</div>
+			<div class="col-1"><button class="btn horas" id="reloj-hora-es"     data-rel="pcontrol">ES</button></div>
+			<div class="col-1"><button class="btn horas" id="reloj-hora-la"     data-rel="pcontrol">LA</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-sonlas" data-rel="pcontrol">SON LAS</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-1"      data-rel="pcontrol">UNA</button></div>
+			<div class="col-3">&nbsp;</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col-3">&nbsp;</div>
+			<div class="col-3"><button class="btn horas" id="reloj-hora-4" data-rel="pcontrol">CUATRO</button></div>
+			<div class="col-3"><button class="btn horas" id="reloj-hora-3" data-rel="pcontrol">TRES</button></div>
+			<div class="col-3">&nbsp;</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col-3">&nbsp;</div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-6" data-rel="pcontrol">SEIS</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-5" data-rel="pcontrol">CINCO</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-2" data-rel="pcontrol">DOS</button></div>
+			<div class="col-3">&nbsp;</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col-3">&nbsp;</div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-8"  data-rel="pcontrol">OCHO</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-7"  data-rel="pcontrol">SIETE</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-10" data-rel="pcontrol">DIEZ</button></div>
+			<div class="col-3">&nbsp;</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col-3">&nbsp;</div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-9"  data-rel="pcontrol">NUEVE</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-11" data-rel="pcontrol">ONCE</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-hora-12" data-rel="pcontrol">DOCE</button></div>
+			<div class="col-3">&nbsp;</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col-3">&nbsp;</div>
+			<div class="col-2"><button class="btn horas" id="reloj-minuto-y"     data-rel="pcontrol">Y</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-minuto-menos" data-rel="pcontrol">MENOS</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-minuto-10"    data-rel="pcontrol">DIEZ</button></div>
+			<div class="col-3">&nbsp;</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col-3">&nbsp;</div>
+			<div class="col-2"><button class="btn horas" id="reloj-minuto-20" data-rel="pcontrol">VEINTE</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-minuto-5"  data-rel="pcontrol">CINCO</button></div>
+			<div class="col-2"><button class="btn horas" id="reloj-minuto-15" data-rel="pcontrol">CUARTO</button></div>
+			<div class="col-3">&nbsp;</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col-3">&nbsp;</div>
+			<div class="col-3"><button class="btn horas" id="reloj-minuto-25" data-rel="pcontrol">VEINTICINCO</button></div>
+			<div class="col-3"><button class="btn horas" id="reloj-minuto-30" data-rel="pcontrol">MEDIA</button></div>
+			<div class="col-3">&nbsp;</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col-3">&nbsp;</div>
+			<div class="col-1"><button class="btn horas" id="reloj-minuto-16" data-rel="pcontrol"><i class="fas fa-square mini" data-classnow="square"></i></button></div>
+			<div class="col-1"><button class="btn horas" id="reloj-minuto-27" data-rel="pcontrol"><i class="fas fa-square mini" data-classnow="square"></i></button></div>
+			<div class="col-2">
+				<span id="horario-digital">
+					<span id="horario-digital-horas"></span>
+					<span class="horario-digital-dp">:</span>
+					<span id="horario-digital-minutos"></span>
+					<span class="horario-digital-dp">:</span>
+					<span id="horario-digital-segundos"></span>
+				</span>
+			</div>
+			<div class="col-1"><button class="btn horas" id="reloj-minuto-38" data-rel="pcontrol"><i class="fas fa-square mini" data-classnow="square"></i></button></div>
+			<div class="col-1"><button class="btn horas" id="reloj-minuto-49" data-rel="pcontrol"><i class="fas fa-square mini" data-classnow="square"></i></button></div>
+			<div class="col-3">&nbsp;</div>
+		</div>
+		<div class="row row-hr">
+			<div class="col-3"></div>
+			<div class="col-6"><div class="progress"><div id="pb-seconds" class="progress-bar backgroundColorPurple" role="progressbar" style="" aria-valuemin="0" aria-valuemax="100"></div></div></div>
+			<div class="col-3"></div>
+		</div>
+		<div class="row row-hr"><div class="col-12"><hr class="hr"></div></div>
+		<div class="row row-hr"><div class="col-12"><a target="_blank" class="text-dark" href="https://gitlab.com/dangakun/relojled"><h6 class="">2023 - &copy; dangakun</h6></a></div></div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var randomProgressBar = false;
+			var fecha = new Date();
+			var horas = fecha.getHours();
+			var minutos = fecha.getMinutes();
+			var segundos = fecha.getSeconds();
+			var anio = fecha.getFullYear();
+			var horaStr = '00';//String(horas).padStart(2, '0');
+			var minStr = '00';//String(minutos).padStart(2, '0');
+			var segStr = '00';//String(segundos).padStart(2, '0');
+			var minutosIni = '0';//Number(minStr.substr(0,1));
+			var minutosFin = '0';//Number(minStr.substr(1,2));
+			var howMany = 0;
+			var divReloj = $('#divReloj');
+			var itemAnim = '';
+			var minu = new Array ();
+			var cuales = new Array();
+			var itemsColorsALL = new Array('colorGreen','colorBlue','colorIndigo','colorPurple','colorPink','colorRed','colorOrange','colorYellow','colorGreen','colorTeal','colorCyan','colorWhite','colorGray','colorGray','colorGray','colorGray','colorGray','colorGray','colorGray','colorGray','colorGray','colorGray','colorGray','colorPrimary','colorSecondary','colorSuccess','colorInfo','colorWarning','colorDanger','colorLight','colorDark');
+			var itemsColors = new Array('colorGreen','colorBlue','colorIndigo','colorPurple','colorPink','colorRed','colorOrange','colorYellow','colorGreen','colorTeal','colorCyan','colorPrimary','colorSecondary','colorSuccess','colorInfo','colorWarning','colorDanger');
+			var items = new Array('backgroundColorGreen','backgroundColorBlue','backgroundColorIndigo','backgroundColorPurple','backgroundColorPink','backgroundColorRed','backgroundColorOrange','backgroundColorYellow','backgroundColorGreen','backgroundColorTeal','backgroundColorCyan','backgroundColorWhite','backgroundColorGray','backgroundColorGray','backgroundColorGray','backgroundColorGray','backgroundColorGray','backgroundColorGray','backgroundColorGray','backgroundColorGray','backgroundColorGray','backgroundColorGray','backgroundColorGray','backgroundColorPrimary','backgroundColorSecondary','backgroundColorSuccess','backgroundColorInfo','backgroundColorWarning','backgroundColorDanger','backgroundColorLight','backgroundColorDark');
+			var animsALL = new Array('bounce','flash','pulse','rubberBand','shakeX','shakeY','headShake','swing','tada','wobble','jello','heartBeat','backInDown','backInLeft','backInRight','backInUp','backOutDown','backOutLeft','backOutRight','backOutUp','bounceIn','bounceInDown','bounceInLeft','bounceInRight','bounceInUp','bounceOut','bounceOutDown','bounceOutLeft','bounceOutRight','bounceOutUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft','fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','fadeInTopLeft','fadeInTopRight','fadeInBottomLeft','fadeInBottomRight','fadeOut','fadeOutDown','fadeOutDownBig','fadeOutLeft','fadeOutLeftBig','fadeOutRight','fadeOutRightBig','fadeOutUp','fadeOutUpBig','fadeOutTopLeft','fadeOutTopRight','fadeOutBottomRight','fadeOutBottomLeft','flip','flipInX','flipInY','flipOutX','flipOutY','lightSpeedInRight','lightSpeedInLeft','lightSpeedOutRight','lightSpeedOutLeft','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight','rotateOut','rotateOutDownLeft','rotateOutDownRight','rotateOutUpLeft','rotateOutUpRight','hinge','jackInTheBox','rollIn','rollOut','zoomIn','zoomInDown','zoomInLeft','zoomInRight','zoomInUp','zoomOut','zoomOutDown','zoomOutLeft','zoomOutRight','zoomOutUp','slideInDown','slideInLeft','slideInRight','slideInUp','slideOutDown','slideOutLeft','slideOutRight','slideOutUp');
+			var anims = new Array('bounce','flash','pulse','rubberBand','shakeX','shakeY','headShake','swing','tada','wobble','jello','heartBeat','backInDown','backInLeft','backInRight','backInUp','bounceIn','bounceInDown','bounceInLeft','bounceInRight','bounceInUp','fadeIn','fadeInDown','fadeInDownBig','fadeInLeft','fadeInLeftBig','fadeInRight','fadeInRightBig','fadeInUp','fadeInUpBig','fadeInTopLeft','fadeInTopRight','fadeInBottomLeft','fadeInBottomRight','flip','flipInX','flipInY','lightSpeedInRight','lightSpeedInLeft','rotateIn','rotateInDownLeft','rotateInDownRight','rotateInUpLeft','rotateInUpRight','jackInTheBox','rollIn','zoomIn','zoomInDown','zoomInLeft','zoomInRight','zoomInUp','slideInDown','slideInLeft','slideInRight','slideInUp');
+			var paceThemes = new Array('pace-theme-big-counter.css','pace-theme-bounce.css','pace-theme-center-atom.css','pace-theme-center-circle.css','pace-theme-center-radar.css','pace-theme-center-simple.css','pace-theme-corner-indicator.css','pace-theme-fill-left.css','pace-theme-flash.css','pace-theme-flat-top.css','pace-theme-loading-bar.css','pace-theme-material.css','pace-theme-minimal.css');
+			var paceThemesColors = new Array('black','blue','green','orange','pink','purple','red','silver','white','yellow');
+
+
+			let itemsColorsRandom = itemsColors[Math.floor(Math.random()*itemsColors.length)];
+			console.log('itemsColorsRandom',itemsColorsRandom);
+			const CLASE_ACTIVA = 'seleccionado-'+itemsColorsRandom;
+			console.log('CLASE_ACTIVA',CLASE_ACTIVA);
+			const CLASE_MINUTO = 'square';// : 'circle';
+			const CLASE_BOLD = 'fw-bold';
+
+			function checkReloj() {
+				chequearHoraFecha();
+				$('#horario-digital-horas').html(horaStr);
+				$('#horario-digital-minutos').html(minStr);
+				$('#horario-digital-segundos').html(segStr);
+				$('.horas').removeClass(CLASE_ACTIVA);
+				$('.horas').removeClass(CLASE_BOLD);
+				minu = new Array();
+				cuales = new Array();
+				console.log('antes horas:',horas);
+				if(horas >= 13){
+					horas = horas-12;
+				}
+				if(minutosFin >= 5){
+					minutosFin = minutosFin - 5;
+				}
+				switch(minutosFin) {
+					case 1:
+					case 6:
+						howMany = 1;
+						minu.push('#reloj-minuto-16');
+						break;
+					case 2:
+					case 7:
+						howMany = 2;
+						minu.push('#reloj-minuto-16');
+						minu.push('#reloj-minuto-27');
+						break;
+					case 3:
+					case 8:
+						howMany = 3;
+						minu.push('#reloj-minuto-16');
+						minu.push('#reloj-minuto-27');
+						minu.push('#reloj-minuto-38');
+						break;
+					case 4:
+					case 9:
+						howMany = 4;
+						minu.push('#reloj-minuto-16');
+						minu.push('#reloj-minuto-27');
+						minu.push('#reloj-minuto-38');
+						minu.push('#reloj-minuto-49');
+						break;
+				}
+
+				if(horas == 1){
+					cuales.push('#reloj-hora-es');
+					cuales.push('#reloj-hora-la');
+				}else{
+					cuales.push('#reloj-hora-sonlas');
+				}
+				console.log('horas:',horas);
+				horasId = (horas == 0) ? '#reloj-hora-12' : '#reloj-hora-'+horas;
+				cuales.push(horasId);
+
+				if(minutos != 0 ){
+					if(minutos >= 5 && minutos <= 34){
+						cuales.push('#reloj-minuto-y');
+					}else{
+						if(minutos >= 35){
+							cuales.push('#reloj-minuto-menos');
+						}
+					}
+				}
+
+				switch (true) {
+					case ((minutos >= 5 && minutos <= 9)   || (minutos >= 55 && minutos <= 59)):
+						cuales.push('#reloj-minuto-5');
+						break;
+					case ((minutos >= 10 && minutos <= 14) || (minutos >= 50 && minutos <= 54)):
+						cuales.push('#reloj-minuto-10');
+						break;
+					case ((minutos >= 15 && minutos <= 19) || (minutos >= 45 && minutos <= 49)):
+						cuales.push('#reloj-minuto-15');
+						break;
+					case ((minutos >= 20 && minutos <= 24) || (minutos >= 40 && minutos <= 44)):
+						cuales.push('#reloj-minuto-20');
+						break;
+					case ((minutos >= 25 && minutos <= 29) || (minutos >= 35 && minutos <= 39)):
+						cuales.push('#reloj-minuto-25');
+						break;
+					case ((minutos >= 30 && minutos <= 34)):
+						cuales.push('#reloj-minuto-30');
+						break;
+				}
+				
+				minu.forEach( function(element, index) {
+					activarElemento(element,CLASE_ACTIVA);
+				});
+				cuales.forEach( function(element, index) {
+					activarElemento(element,CLASE_ACTIVA);
+				});
+				updateProgressBar(segundos);
+			}
+
+			function updateProgressBar(seg){
+				let per = ((seg*100)/60);
+				$('#pb-seconds').css('width',(per+'%'));
+				//toggleClassMinutos();
+				//$('#pb-seconds').html((per+'%'));
+				if(randomProgressBar === true){
+					items.forEach( function(element, index) {
+						if($('#pb-seconds').hasClass(element)){
+							$('#pb-seconds').removeClass(element);
+						}
+					});
+					let item = items[Math.floor(Math.random()*items.length)];
+					$('#pb-seconds').addClass(item);
+				}
+			}
+
+			function activarElemento(cualElemento,claseActiva){
+				$(cualElemento).addClass(claseActiva).addClass(CLASE_BOLD);
+			}
+
+			function desactivarElemento(cualElemento,claseActiva){
+				$(cualElemento).removeClass(claseActiva).removeClass(CLASE_BOLD);
+			}
+
+			function chequearHoraFecha(){
+				fecha = new Date();
+				anio = fecha.getFullYear();
+				horas = fecha.getHours();
+				console.log('chequearHoraFecha horas:',horas);
+				minutos = fecha.getMinutes();
+				segundos = fecha.getSeconds();
+				horaStr = String(horas).padStart(2, '0');
+				minStr = String(minutos).padStart(2, '0');
+				segStr = String(segundos).padStart(2, '0');
+				minutosIni = Number(minStr.substr(0,1));
+				minutosFin = Number(minStr.substr(1,2));
+			}
+
+			function toggleClassMinutos(){
+				$('.mini').toggleClass('fa-square');
+				$('.mini').toggleClass('fa-circle');
+			}
+
+			function init(){
+				itemAnim = anims[Math.floor(Math.random()*anims.length)];
+				itemAnim = 'animate__'+itemAnim;
+				let paceThemeRandom = paceThemes[Math.floor(Math.random()*paceThemes.length)];
+				let paceThemeColorRandom = paceThemesColors[Math.floor(Math.random()*paceThemesColors.length)];
+				$('head').append('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/'+paceThemeColorRandom+'/'+paceThemeRandom+'" type="text/css" />');
+				divReloj.removeClass('invisible');
+				divReloj.addClass('animate__animated').addClass('animate__delay-3s').addClass(itemAnim);//.addClass('animate__delay-2s')
+				checkReloj();
+				setTimeout(() => Pace.stop(), 3000);
+			}
+
+			$('.mini').on('click',function(){
+				toggleClassMinutos();
+			});
+
+			divReloj.on('animationend',function(){
+				console.log('eventoo');
+				setInterval(checkReloj, 1000);
+			});
+
+			init();
+		});
+	</script>
+</body>
+</html>
