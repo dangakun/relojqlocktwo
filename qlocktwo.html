@@ -158,9 +158,9 @@
 
 
 			let itemsColorsRandom = itemsColors[Math.floor(Math.random()*itemsColors.length)];
-			console.log('itemsColorsRandom',itemsColorsRandom);
+			//console.log('itemsColorsRandom',itemsColorsRandom);
 			const CLASE_ACTIVA = 'seleccionado-'+itemsColorsRandom;
-			console.log('CLASE_ACTIVA',CLASE_ACTIVA);
+			//console.log('CLASE_ACTIVA',CLASE_ACTIVA);
 			const CLASE_MINUTO = 'square';// : 'circle';
 			const CLASE_BOLD = 'fw-bold';
 
@@ -173,7 +173,7 @@
 				$('.horas').removeClass(CLASE_BOLD);
 				minu = new Array();
 				cuales = new Array();
-				console.log('antes horas:',horas);
+				//console.log('antes horas:',horas);
 				if(horas >= 13){
 					horas = horas-12;
 				}
@@ -215,7 +215,7 @@
 				}else{
 					cuales.push('#reloj-hora-sonlas');
 				}
-				console.log('horas:',horas);
+				//console.log('horas:',horas);
 				horasId = (horas == 0) ? '#reloj-hora-12' : '#reloj-hora-'+horas;
 				cuales.push(horasId);
 
@@ -287,7 +287,7 @@
 				fecha = new Date();
 				anio = fecha.getFullYear();
 				horas = fecha.getHours();
-				console.log('chequearHoraFecha horas:',horas);
+				//console.log('chequearHoraFecha horas:',horas);
 				minutos = fecha.getMinutes();
 				segundos = fecha.getSeconds();
 				horaStr = String(horas).padStart(2, '0');
@@ -319,7 +319,7 @@
 			});
 
 			divReloj.on('animationend',function(){
-				console.log('eventoo');
+				//console.log('eventoo');
 				setInterval(checkReloj, 1000);
 			});
 
