@@ -16,6 +16,7 @@
 		.horas{font-size: 2.5rem;}
 		.hr{display: none !important;}
 		.row-hr{margin: 1vh 0;}
+		.btn{color:#121212;}
 		.seleccionado{color: var(--bs-green); font-weight:bold;}
 		#horario-digital-horas{color:var(--bs-gray-900);}
 		#horario-digital-minutos{color:var(--bs-green);}
@@ -289,6 +290,8 @@
 				horas = fecha.getHours();
 				//console.log('chequearHoraFecha horas:',horas);
 				minutos = fecha.getMinutes();
+				horas = (minutos >= 35) ? (horas+1) : horas;
+				//console.log('DESPUESSSSSS chequearHoraFecha horas:',horas);
 				segundos = fecha.getSeconds();
 				horaStr = String(horas).padStart(2, '0');
 				minStr = String(minutos).padStart(2, '0');
